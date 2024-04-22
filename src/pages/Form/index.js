@@ -4,38 +4,60 @@ import { Form, Debug } from "informed";
 import { type } from "os";
 import Ajv from "ajv";
 
-const Input = (props) => {
-  const { render, informed, userProps } = useField({
-    type: "text",
-    ...props,
-  });
+// const Input = (props) => {
+//   const { render, informed, userProps } = useField({
+//     type: "text",
+//     ...props,
+//   });
 
-  return render(<input {...informed} />);
-};
+//   return render(<input {...informed} />);
+// };
+
+
+
+
+
+
+
+
+
+
 const schema = {
   type: "object",
   properties: {
     firstName: {
       type: "string",
-      title: "First name",
+      title:"First Name",
       "ui:control": "input",
+      "ui:props": {
+        className: "border border-gray-300 p-2 rounded-md w-full  focus:outline-none focus:border-blue-500 mt-1",
+      },
     },
     lastName: {
       type: "string",
       title: "Last name",
       "ui:control": "input",
+      "ui:props": {
+        className: "border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:border-blue-500 mt-1",
+      },
     },
     email: {
       type: "string",
       title: "Email",
       format: "email",
       "ui:control": "input",
+      "ui:props": {
+        className: "border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:border-blue-500 mt-2",
+      },
     },
     married: {
       type: "string",
       title: "Are you married?",
       enum: ["yes", "no"],
       "ui:control": "radio",
+      "ui:props": {
+        className: "w-6 h-6 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 ",
+      },
     },
     "ui:spouse": {},
     drinking: {
@@ -45,6 +67,11 @@ const schema = {
           type: "number",
           title: "your age?",
           "ui:control": "input",
+          "ui:props": {
+            type:"number",
+            initialValue:15,
+            className: "border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:border-blue-500 mt-2",
+          },
         },
         "ui:EducationQulaification": {},
       },
@@ -59,7 +86,7 @@ const schema = {
           },
           then: {
             type: "object",
-            properties: {
+             properties: {
               Edqualification: {
                 type: "string",
                 title: "what is your qualification ?",
@@ -70,6 +97,7 @@ const schema = {
                 ],
                 "ui:props": {
                   initialValue: "PG",
+                    className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                 },
               },
             },
@@ -87,6 +115,7 @@ const schema = {
                       "ui:control": "textarea",
                       "ui:props": {
                         initialValue: "B.sc(Computer science)",
+                          className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                       },
                     },
                   },
@@ -105,6 +134,7 @@ const schema = {
                       "ui:control": "textarea",
                       "ui:props": {
                         initialValue: "M.sc(Computer science)",
+                          className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                       },
                     },
                   },
@@ -145,6 +175,7 @@ const schema = {
                     "ui:control": "input",
                     "ui:props": {
                       initialValue: "Ram",
+                        className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                     },
                   },
                   SiblingAge: {
@@ -154,6 +185,7 @@ const schema = {
                     "ui:props": {
                       type: "number",
                       initialValue: 15,
+                      className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                     },
                   },
                 },
@@ -179,6 +211,7 @@ const schema = {
                           ],
                           "ui:props": {
                             initialValue: "PG",
+                              className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                           },
                         },
                       },
@@ -197,6 +230,7 @@ const schema = {
                                 "ui:control": "textarea",
                                 "ui:props": {
                                   initialValue: "B.sc(Computer science)",
+                                    className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                                 },
                               },
                             },
@@ -215,6 +249,7 @@ const schema = {
                                 "ui:control": "textarea",
                                 "ui:props": {
                                   initialValue: "M.sc(Computer science)",
+                                    className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                                 },
                               },
                             },
@@ -241,7 +276,8 @@ const schema = {
                 type: "array",
                 minItems: 2,
                 "ui:control": "array",
-                "ui:props": {},
+                "ui:props": {
+                },
                 "ui:before": [{ "ui:control": "add" }],
                 items: {
                   type: "object",
@@ -256,6 +292,7 @@ const schema = {
                           "ui:control": "input",
                           "ui:props": {
                             initialValue: "Ram",
+                              className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2"
                           },
                         },
                         SiblingAge: {
@@ -265,6 +302,7 @@ const schema = {
                           "ui:props": {
                             type: "number",
                             initialValue: 15,
+                              className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                           },
                         },
                       },
@@ -291,6 +329,7 @@ const schema = {
                                 ],
                                 "ui:props": {
                                   initialValue: "PG",
+                                    className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                                 },
                               },
                             },
@@ -311,6 +350,7 @@ const schema = {
                                       "ui:control": "textarea",
                                       "ui:props": {
                                         initialValue: "B.sc(Computer science)",
+                                          className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2"
                                       },
                                     },
                                   },
@@ -332,6 +372,7 @@ const schema = {
                                       "ui:control": "textarea",
                                       "ui:props": {
                                         initialValue: "M.sc(Computer science)",
+                                          className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
                                       },
                                     },
                                   },
@@ -369,6 +410,9 @@ const schema = {
             type: "string",
             title: "Spouse name",
             "ui:control": "input",
+            "ui:props": {
+              className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+            },
           },
         },
         required: ["spouse"],
@@ -379,11 +423,25 @@ const schema = {
 };
 
 export default function Index() {
+
+  const handleSubmit = (values) => {
+    // Handle the form submission here
+    console.log("Form values:", values);
+    // You can send the values to an API, update state, etc.
+  };
+
+
+  
+
+
   return (
     <div className="w-full h-screen flex items-center justify-center ">
-      <Form schema={schema} ajv={Ajv} className="flex flex-col w-2/6 bg-blue-300 px-8 py-4 rounded-2xl ">
+      <Form schema={schema} ajv={Ajv} className="flex flex-col w-2/6 bg-blue-300 px-8 py-4 rounded-2xl " onSubmit={handleSubmit}>
         <div className="text-lg font-semibold tracking-widest  w-full text-center">Form</div>
-        <SchemaFields />
+        <SchemaFields  />
+        <button type="submit" className="bg-green-500 text-white px-4 py-2 mt-4 rounded">
+          Submit
+        </button>
       </Form>
     </div>
   );
