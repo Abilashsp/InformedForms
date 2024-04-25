@@ -13,13 +13,9 @@ import Ajv from "ajv";
 //   return render(<input {...informed} />);
 // };
 
-
-
-
-
-
-
-
+const getDynamicLabel = (propertyName) => {
+  return <div className="text-base font-semibold tracking-wider">{propertyName}</div>;
+};
 
 
 const schema = {
@@ -27,10 +23,12 @@ const schema = {
   properties: {
     firstName: {
       type: "string",
-      title:"First Name",
+      title: "First Name",
       "ui:control": "input",
       "ui:props": {
-        className: "border border-gray-300 p-2 rounded-md w-full  focus:outline-none focus:border-blue-500 mt-1",
+        className:
+          "border border-gray-300 p-2 rounded-md w-full  focus:outline-none focus:border-blue-500 mt-1",
+
       },
     },
     lastName: {
@@ -38,7 +36,9 @@ const schema = {
       title: "Last name",
       "ui:control": "input",
       "ui:props": {
-        className: "border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:border-blue-500 mt-1",
+        className:
+          "border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:border-blue-500 mt-1",
+          label:getDynamicLabel("Last name")
       },
     },
     email: {
@@ -47,7 +47,14 @@ const schema = {
       format: "email",
       "ui:control": "input",
       "ui:props": {
-        className: "border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:border-blue-500 mt-2",
+        className:
+          "border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:border-blue-500 mt-2",
+          label:getDynamicLabel("Email")
+      },
+      "ui:options": {
+        title: {
+          className: "text-lg font-semibold tracking-widest text-center",
+        },
       },
     },
     married: {
@@ -56,7 +63,9 @@ const schema = {
       enum: ["yes", "no"],
       "ui:control": "radio",
       "ui:props": {
-        className: "w-6 h-6 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 ",
+        className:
+          "w-6 h-6 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 ",
+          label:getDynamicLabel("Are you married?")
       },
     },
     "ui:spouse": {},
@@ -68,9 +77,11 @@ const schema = {
           title: "your age?",
           "ui:control": "input",
           "ui:props": {
-            type:"number",
-            initialValue:15,
-            className: "border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:border-blue-500 mt-2",
+            type: "number",
+            initialValue: 15,
+            className:
+              "border border-gray-300 p-2 rounded-md w-2/5 focus:outline-none focus:border-blue-500 mt-2",
+              label:getDynamicLabel("your age?")
           },
         },
         "ui:EducationQulaification": {},
@@ -86,7 +97,7 @@ const schema = {
           },
           then: {
             type: "object",
-             properties: {
+            properties: {
               Edqualification: {
                 type: "string",
                 title: "what is your qualification ?",
@@ -97,7 +108,9 @@ const schema = {
                 ],
                 "ui:props": {
                   initialValue: "PG",
-                    className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                  className:
+                    "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                    label:getDynamicLabel("what is your qualification ?")
                 },
               },
             },
@@ -115,7 +128,9 @@ const schema = {
                       "ui:control": "textarea",
                       "ui:props": {
                         initialValue: "B.sc(Computer science)",
-                          className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                        className:
+                          "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                          label:getDynamicLabel("what is your qualification Name ?")
                       },
                     },
                   },
@@ -134,7 +149,9 @@ const schema = {
                       "ui:control": "textarea",
                       "ui:props": {
                         initialValue: "M.sc(Computer science)",
-                          className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                        className:
+                          "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                          label:getDynamicLabel("what is your qualification Name ?")
                       },
                     },
                   },
@@ -153,6 +170,14 @@ const schema = {
           title: "Do you Have Siblings?",
           enum: ["yes", "no"],
           "ui:control": "radio",
+          "ui:props": {
+            initialValue: "no",
+            className:
+              "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+              label:getDynamicLabel("Do you Have Siblings?")
+              
+          },
+          
         },
       },
 
@@ -175,7 +200,9 @@ const schema = {
                     "ui:control": "input",
                     "ui:props": {
                       initialValue: "Ram",
-                        className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                      className:
+                        "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                        label:getDynamicLabel("What is your sibling's name?")
                     },
                   },
                   SiblingAge: {
@@ -185,7 +212,9 @@ const schema = {
                     "ui:props": {
                       type: "number",
                       initialValue: 15,
-                      className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                      className:
+                        "border border-gray-300 p-2 rounded-md  w-2/5 focus:outline-none focus:border-blue-500 mt-2",
+                        label:getDynamicLabel("What is your sibling's Age?")
                     },
                   },
                 },
@@ -211,7 +240,9 @@ const schema = {
                           ],
                           "ui:props": {
                             initialValue: "PG",
-                              className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                            className:
+                              "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                              label:getDynamicLabel("what is your Sibling qualification Course ?")
                           },
                         },
                       },
@@ -230,7 +261,9 @@ const schema = {
                                 "ui:control": "textarea",
                                 "ui:props": {
                                   initialValue: "B.sc(Computer science)",
-                                    className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                                  className:
+                                    "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                                    label:getDynamicLabel("what is your Sibling qualification Name ?")
                                 },
                               },
                             },
@@ -249,7 +282,9 @@ const schema = {
                                 "ui:control": "textarea",
                                 "ui:props": {
                                   initialValue: "M.sc(Computer science)",
-                                    className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                                  className:
+                                    "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                                    label:getDynamicLabel("what is your qualification Name ?")
                                 },
                               },
                             },
@@ -276,8 +311,7 @@ const schema = {
                 type: "array",
                 minItems: 2,
                 "ui:control": "array",
-                "ui:props": {
-                },
+                "ui:props": {className:"bg-red-500"},
                 "ui:before": [{ "ui:control": "add" }],
                 items: {
                   type: "object",
@@ -292,7 +326,9 @@ const schema = {
                           "ui:control": "input",
                           "ui:props": {
                             initialValue: "Ram",
-                              className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2"
+                            className:
+                              "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                              label:getDynamicLabel("What is your sibling's name?")
                           },
                         },
                         SiblingAge: {
@@ -302,7 +338,9 @@ const schema = {
                           "ui:props": {
                             type: "number",
                             initialValue: 15,
-                              className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                            className:
+                              "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                              label:getDynamicLabel("What is your sibling's Age?")
                           },
                         },
                       },
@@ -317,6 +355,9 @@ const schema = {
                           },
                           then: {
                             type: "object",
+                            "ui:props": {
+                              className:"bg-green border-4",
+                            },
                             properties: {
                               sibEdqualification: {
                                 type: "string",
@@ -329,7 +370,9 @@ const schema = {
                                 ],
                                 "ui:props": {
                                   initialValue: "PG",
-                                    className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                                  className:
+                                    "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                                    label:getDynamicLabel("what is your Sibling qualification Course ?")
                                 },
                               },
                             },
@@ -350,7 +393,9 @@ const schema = {
                                       "ui:control": "textarea",
                                       "ui:props": {
                                         initialValue: "B.sc(Computer science)",
-                                          className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2"
+                                        className:
+                                          "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                                          label:getDynamicLabel("what is your Sibling qualification Name ?")
                                       },
                                     },
                                   },
@@ -372,7 +417,9 @@ const schema = {
                                       "ui:control": "textarea",
                                       "ui:props": {
                                         initialValue: "M.sc(Computer science)",
-                                          className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                                        className:
+                                          "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                                          label:getDynamicLabel("what is your qualification Name ?")
                                       },
                                     },
                                   },
@@ -383,14 +430,17 @@ const schema = {
                         },
                       ],
                     },
-                    "ui:component:remove": {"ui:control": "remove"}
+                    "ui:component:remove": {
+                      "ui:control": "remove",
+                      "ui:props": {
+                        className: "text-blue-500",
+                      },
+                    },
                   },
-                  
                 },
               },
             },
           },
-        
         },
       ],
     },
@@ -411,7 +461,9 @@ const schema = {
             title: "Spouse name",
             "ui:control": "input",
             "ui:props": {
-              className: "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+              className:
+                "border border-gray-300 p-2 rounded-md  w-full focus:outline-none focus:border-blue-500 mt-2",
+                 label:getDynamicLabel("First Name")
             },
           },
         },
@@ -419,29 +471,33 @@ const schema = {
       },
     },
   ],
-  required: ["firstName", "email","lastName"],
+  required: ["firstName", "email", "lastName"],
 };
 
 export default function Index() {
-
   const handleSubmit = (values) => {
-    // Handle the form submission here
     console.log("Form values:", values);
-    // You can send the values to an API, update state, etc.
   };
 
-
-  
-
-
   return (
-    <div className="w-full h-screen flex items-center justify-center ">
-      <Form schema={schema} ajv={Ajv} className="flex flex-col w-2/6 bg-blue-300 px-8 py-4 rounded-2xl " onSubmit={handleSubmit}>
-        <div className="text-lg font-semibold tracking-widest  w-full text-center">Form</div>
-        <SchemaFields  />
-        <button type="submit" className="bg-green-500 text-white px-4 py-2 mt-4 rounded">
+    <div className="w-full flex items-center justify-center min-h-screen max-h-full">
+      <Form
+        schema={schema}
+        ajv={Ajv}
+        className=" my-form-class flex flex-col w-2/6 bg-blue-300 px-8 py-4 rounded-2xl "
+        onSubmit={handleSubmit}
+      >
+        <div className="text-lg font-semibold tracking-widest  w-full text-center">
+          Form
+        </div>
+        <SchemaFields />
+        <button
+          type="submit"
+          className="bg-green-500 text-white px-4 py-2 mt-4 rounded"
+        >
           Submit
         </button>
+        
       </Form>
     </div>
   );

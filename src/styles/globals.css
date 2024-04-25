@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+.my-form-class label {
+ font-size: 16px;
+
+}
