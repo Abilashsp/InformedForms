@@ -309,7 +309,7 @@ const schema = {
           "ui:control": "PurpleBorder",
           if: {
             properties: {
-              PersonAge: { minimum: 18, maximum: 30 },
+              PersonAge: { minimum: 18, maximum: 30, },
             },
             required: ["PersonAge"],
           },
