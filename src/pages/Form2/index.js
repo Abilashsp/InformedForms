@@ -48,6 +48,35 @@ const Input = ({ label, ...props }) => {
   );
 };
 
+
+const Inputhalf = ({ label, ...props }) => {
+  const { render, informed, userProps, ref } = useField({
+    type: "text",
+    ...props,
+  });
+
+  return render(
+    <div className="w-1/2  my-3 mx-4  ">
+      <label className=" flex items-center justify-between">
+        <div className="w-2/5 ">{label}</div>
+        <input
+          ref={ref}
+          {...informed}
+          {...userProps}
+          className="mx-2 w-3/5 px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        />
+      </label>
+    </div>
+  );
+};
+
+
+
+
+
+
+
+
 const InputNumber = ({ label, ...props }) => {
   const { render, informed, userProps, ref } = useField({
     type: "number",
@@ -221,6 +250,7 @@ const adapter = {
   add: AddButton,
   remove: RemoveButton,
   array: MyArrayField,
+  inputhalf:Inputhalf
 };
 
 // Step 4. Build your forms!! -----------------------
@@ -229,17 +259,23 @@ const schema = {
   type: "object",
   required: ["firstName", "Lastname"],
   properties: {
-    firstName: {
-      type: "string",
-      title: "First Name",
-      "ui:control": "input",
-      "ui:props": {},
-    },
-    Lastname: {
-      type: "string",
-      title: "Last Name",
-      "ui:control": "input",
-      "ui:props": {},
+    name: {
+      type: "object",
+      "ui:control": "singlerow",
+      properties: {
+        firstName: {
+          type: "string",
+          title: "First Name",
+          "ui:control": "inputhalf",
+          "ui:props": { className: "" },
+        },
+        lastName: {
+          type: "string",
+          title: "Last Name",
+          "ui:control": "inputhalf",
+          "ui:props": { className: "w-1/2" },
+        },
+      },
     },
     Email: {
       type: "string",
@@ -264,7 +300,7 @@ const schema = {
           type: "number",
           title: "Age",
           "ui:control": "inputnumber",
-          "ui:props": { initialValue: "18" },
+          "ui:props": { initialValue: "15" },
         },
       },
       allOf: [
@@ -369,7 +405,7 @@ const schema = {
                 "ui:control": "inputnumber",
                 "ui:props": {
                   type: "number",
-                  initialValue: "18",
+                  initialValue: "15",
                 },
               },
             },
@@ -442,7 +478,7 @@ const schema = {
                 $id: "sibage",
                 if: {
                   properties: {
-                    sibage: { minimum: 18, maximum: 30 },
+                    sibage: { minimum: 0 },
                   },
                   required: ["sibage"],
                 },
@@ -470,7 +506,7 @@ const schema = {
                             "ui:control": "inputnumber",
                             "ui:props": {
                               type: "number",
-                              initialValue: "18",
+                              initialValue: "15",
                             },
                           },
                         },
@@ -582,14 +618,21 @@ const PurpleBorder = ({ children }) => {
     </div>
   );
 };
+const singlerow = ({ children }) => {
+  return (
+    <div className="flex flex-row items-center justify-center">
+      <div className="flex w-full items-center justify-between">{children}</div>
+    </div>
+  );
+};
 
 const Schema = () => (
   <div className="w-full min-h-screen max-h-full flex items-start justify-center bg-white">
     <Form
       schema={schema}
       adapter={adapter}
-      components={{ PurpleBorder }}
-      className="flex flex-col w-2/5  bg-gray-100 py-6 px-2 rounded-lg shadow-md mt-2"
+      components={{ PurpleBorder,singlerow }}
+      className="flex flex-col w-3/6  bg-gray-100 py-6 px-2 rounded-lg shadow-md mt-2"
     >
       <div className="w-full flex items-center justify-center ">
         <h1 className="text-xl font-semibold tracking-widest">Form</h1>
@@ -604,7 +647,7 @@ const Schema = () => (
         </button>
       </div>
 
-      <Debug />
+      {/* <Debug /> */}
     </Form>
   </div>
 );
